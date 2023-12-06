@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.container {
+  @apply mx-auto px-5;
+}
+
+body {
+  font-family: 'DM Serif Text', serif;
+  font-family: 'Raleway', sans-serif;
+}
+
+li {
+  list-style: none;
+  cursor: pointer;
+  position: relative;
+}
+
+.submit_login {
+  background: #773a26;
+  border-radius: 6px;
+}
+
+.bg_navbar .nav {
+  width: 551px;
+}
+
+.card_product {
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px;
+}
+
+.faq {
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px;
+}
+.footeryangti {
+  background: #310a01;
+}
+
+.slides {
+  background: #f4e4ca;
+}
+
+.manfaat {
+  background: #dbb389;
+}
+
+.use-product {
+  background: #f4e4ca;
+}
+
+.testimoni {
+  background: #dbb389;
+}
+
+.card_testimoni {
+  background: #fff;
+}
+
+.tombol {
+  background: #773a26;
+}
