@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { shallow } from 'zustand/shallow'
-import editUserService from '@/service/user/editUser'
+import editUserService from '@/services/user/editUser'
 import useAuth from '@/store/auth'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'

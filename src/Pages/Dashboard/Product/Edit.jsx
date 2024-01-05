@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useParams, Link, useNavigate } from 'react-router-dom'
-import getProductByIdService from '@/service/product/getById'
-import editProductService from '@/service/product/edit'
+import getProductByIdService from '@/services/product/getById'
+import editProductService from '@/services/product/edit'
 import 'react-toastify/dist/ReactToastify.css'
 import { ToastContainer, toast } from 'react-toastify'
 

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
-import createProductService from '@/service/product/create'
+import createProductService from '@/services/product/create'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
@@ -33,7 +33,7 @@ function CreateProduct() {
     e.preventDefault()
     createProductService(formdata)
       .then((res) => {
-        if (res.status === 'Success')
+        if (res.status === 200) {
           toast.success('Berhasil Menambahkan Product', {
             position: 'top-center',
             autoClose: 1500,
@@ -41,9 +41,13 @@ function CreateProduct() {
             closeOnClick: true,
             draggable: true,
           })
-        setTimeout(() => {
-          navigate('/dashboard')
-        }, 1500)
+
+          const timeout = setTimeout(() => {
+            navigate('/dashboard')
+          }, 1500)
+
+          clearTimeout(timeout)
+        }
       })
 
       .catch(() => {
@@ -83,7 +87,6 @@ function CreateProduct() {
 
       <div className='mb-4'>
         <label htmlFor='name' className='mb-1 block px-2 font-medium'>
-          {' '}
           Nama Product :
           <input
             id='name'
