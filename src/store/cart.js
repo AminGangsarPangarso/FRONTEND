@@ -37,6 +37,12 @@ const useCart = create(
           return { cart }
         })
       },
+      clearCart: () => {
+        set(() => {
+          return { cart: {} }
+        })
+        localStorage.removeItem(LOCAL_STORAGE_KEY.cart)
+      },
     }),
     {
       name: LOCAL_STORAGE_KEY.cart,
