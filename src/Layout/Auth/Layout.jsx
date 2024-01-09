@@ -6,7 +6,7 @@ import { ChevronLeft } from 'lucide-react'
 function AuthLayout() {
   return (
     <div className='min-w-screen container flex h-full min-h-screen w-full items-center justify-center py-12'>
-      <div className='w-full max-w-5xl overflow-hidden rounded-2xl bg-white text-gray-500 shadow-xl'>
+      <div className='w-full max-w-5xl overflow-hidden rounded-2xl bg-white text-gray-500 shadow-[0px_0px_100px_rgba(146,63,14,.2)]'>
         <div className='relative w-full md:flex'>
           <Link
             to='/'

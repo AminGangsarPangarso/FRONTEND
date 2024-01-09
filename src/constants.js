@@ -4,6 +4,7 @@ const IMAGE_BASE_URL = import.meta.env.VITE_IMAGE_BASE_URL
 const API_ENDPOINT = {
   login: '/login',
   register: '/register',
+  product: '/product',
 }
 
 const LOCAL_STORAGE_KEY = {
