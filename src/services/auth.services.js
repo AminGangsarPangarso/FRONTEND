@@ -2,25 +2,25 @@ import axios from '@/libs/axios'
 import { API_ENDPOINT } from '@/constants'
 
 const authServices = {
-  login: ({ email, password }) => {
+  login: ({ username, password }) => {
     return new Promise((resolve, reject) => {
       axios
         .post(API_ENDPOINT.login, {
-          user_name: email,
+          username,
           password,
         })
         .then((res) => resolve(res.data))
         .catch((err) => reject(err))
     })
   },
-  register: ({ email, username, password, phoneNnumber }) => {
+  register: ({ email, username, password, phoneNumber }) => {
     return new Promise((resolve, reject) => {
       axios
-        .post(API_ENDPOINT.logincostumers, {
+        .post(API_ENDPOINT.register, {
           username,
           password,
           email,
-          phone_number: phoneNnumber,
+          phone_number: phoneNumber,
         })
         .then((res) => resolve(res.data))
         .catch((err) => reject(err))
