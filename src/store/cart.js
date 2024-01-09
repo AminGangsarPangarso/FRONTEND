@@ -6,13 +6,12 @@ const useCart = create(
   persist(
     (set) => ({
       cart: {},
-      addCart: ({ id, name, description, image }) => {
+      addCart: ({ id, name, image }) => {
         set((state) => {
           const cart = { ...state.cart }
           cart[id] = {
             id,
             name,
-            description: description.substring(0, 120),
             image,
             quantity: 1,
           }

@@ -7,6 +7,8 @@ import Landing from '@/Pages/Landing/Page'
 import NotFound from '@/Pages/NotFound'
 import Login from '@/Pages/Auth/Login'
 import Register from '@/Pages/Auth/Register'
+import DashboardLayout from '@/Layout/Dashboard'
+import Checkout from '@/Pages/Dashboard/Checkout'
 
 const router = createBrowserRouter([
   {
@@ -30,6 +32,16 @@ const router = createBrowserRouter([
       {
         path: 'register',
         element: <Register />,
+      },
+    ],
+  },
+  {
+    path: '',
+    element: <DashboardLayout />,
+    children: [
+      {
+        path: 'checkout',
+        element: <Checkout />,
       },
     ],
   },

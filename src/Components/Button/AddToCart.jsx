@@ -16,7 +16,7 @@ function ButtonAddToCart({ product, isDisabled = false, hasLoggedIn = false }) {
     shallow
   )
 
-  const { id, name, price, description, image } = product
+  const { id, name, price, image } = product
   const quantity = useMemo(() => {
     return cart[id]?.quantity || 0
   }, [cart])
@@ -28,7 +28,6 @@ function ButtonAddToCart({ product, isDisabled = false, hasLoggedIn = false }) {
         id,
         name,
         price,
-        description,
         image,
       })
       return
