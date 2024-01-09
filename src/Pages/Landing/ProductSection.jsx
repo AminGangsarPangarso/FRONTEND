@@ -7,8 +7,10 @@ import { Minus, PackageSearch, Plus, ShoppingCart } from 'lucide-react'
 import { cn } from '@/utils/classes'
 import useCart from '@/store/cart'
 import { shallow } from 'zustand/shallow'
+import { Link } from 'react-router-dom'
+import useAuth from '@/store/auth'
 
-function ButtonAction({ product, isDisabled = false }) {
+function ButtonAction({ product, isDisabled = false, hasLoggedIn = false }) {
   const [cart, addCart, incrementCart, decrementCart] = useCart(
     (state) => [
       state.cart,
@@ -42,6 +44,17 @@ function ButtonAction({ product, isDisabled = false }) {
   const onDecrement = (e) => {
     e.preventDefault()
     decrementCart(id)
+  }
+
+  if (!hasLoggedIn) {
+    return (
+      <Link
+        to='/login'
+        className='flex w-full items-center justify-center gap-2 rounded-md bg-amber-700 px-5 py-2.5 text-left font-raleway font-semibold tracking-wide text-white transition-colors duration-300 hover:bg-amber-800'
+      >
+        Login first to continue
+      </Link>
+    )
   }
 
   if (quantity <= 0) {
@@ -94,6 +107,8 @@ function ButtonAction({ product, isDisabled = false }) {
 
 function ProductCard({ product }) {
   const { name, image, price } = product
+  const [isAuthenticated] = useAuth((state) => [state.isAuthenticated], shallow)
+
   return (
     <div className='group h-full w-full max-w-[320px] space-y-4 rounded-md border border-slate-200 bg-white p-4 text-center'>
       <div className='relative aspect-square h-auto w-full cursor-pointer overflow-hidden rounded-md'>
@@ -114,7 +129,7 @@ function ProductCard({ product }) {
           {rupiah(price)}
         </h3>
       </div>
-      <ButtonAction product={product} />
+      <ButtonAction product={product} hasLoggedIn={isAuthenticated()} />
     </div>
   )
 }
