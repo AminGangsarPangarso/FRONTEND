@@ -6,6 +6,7 @@ import AuthLayout from '@/Layout/Auth'
 import Landing from '@/Pages/Landing/Page'
 import NotFound from '@/Pages/NotFound'
 import Login from '@/Pages/Auth/Login'
+import Register from '@/Pages/Auth/Register'
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
       {
         path: 'login',
         element: <Login />,
+      },
+      {
+        path: 'register',
+        element: <Register />,
       },
     ],
   },
