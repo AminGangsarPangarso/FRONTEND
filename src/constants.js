@@ -9,6 +9,7 @@ const API_ENDPOINT = {
 
 const LOCAL_STORAGE_KEY = {
   auth: 'auth',
+  cart: 'cart',
 }
 
 export { API_ENDPOINT, LOCAL_STORAGE_KEY, API_BASE_URL, IMAGE_BASE_URL }

@@ -5,20 +5,46 @@ import { IMAGE_BASE_URL } from '@/constants'
 import rupiah from '@/utils/rupiah'
 import { Minus, PackageSearch, Plus, ShoppingCart } from 'lucide-react'
 import { cn } from '@/utils/classes'
+import useCart from '@/store/cart'
+import { shallow } from 'zustand/shallow'
 
 function ButtonAction({ product, isDisabled = false }) {
-  const [state, setState] = useState(product.count)
+  const [cart, addCart, incrementCart, decrementCart] = useCart(
+    (state) => [
+      state.cart,
+      state.addCart,
+      state.incrementCart,
+      state.decrementCart,
+    ],
+    shallow
+  )
+
+  const { id, name, price, description, image } = product
+  const quantity = useMemo(() => {
+    return cart[id]?.quantity || 0
+  }, [cart])
+
   const onIncrement = (e) => {
     e.preventDefault()
-    setState((prev) => prev + 1)
+    if (quantity === 0) {
+      addCart({
+        id,
+        name,
+        price,
+        description,
+        image,
+      })
+      return
+    }
+    incrementCart(id)
   }
 
   const onDecrement = (e) => {
     e.preventDefault()
-    setState((prev) => prev - 1)
+    decrementCart(id)
   }
 
-  if (state <= 0) {
+  if (quantity <= 0) {
     return (
       <button
         type='button'
@@ -41,7 +67,7 @@ function ButtonAction({ product, isDisabled = false }) {
         type='button'
         disabled={isDisabled}
         className={cn(
-          'flex items-center justify-center gap-2 rounded-md bg-amber-700 px-2.5 py-2.5 text-left font-raleway font-semibold tracking-wide text-white transition-colors duration-300 hover:bg-amber-800',
+          'flex items-center justify-center gap-2 rounded-md bg-amber-700 p-3 text-left font-raleway font-semibold tracking-wide text-white transition-colors duration-300 hover:bg-amber-800',
           isDisabled && 'cursor-not-allowed opacity-80'
         )}
         onClick={onDecrement}
@@ -49,13 +75,13 @@ function ButtonAction({ product, isDisabled = false }) {
         <Minus className='h-5 w-5' />
       </button>
       <span className='w-full font-raleway text-xl font-bold text-amber-800'>
-        {state}
+        {quantity}
       </span>
       <button
         type='button'
         disabled={isDisabled}
         className={cn(
-          'flex items-center justify-center gap-2 rounded-md bg-amber-700 px-2.5 py-2.5 text-left font-raleway font-semibold tracking-wide text-white transition-colors duration-300 hover:bg-amber-800',
+          'flex items-center justify-center gap-2 rounded-md bg-amber-700 p-3 text-left font-raleway font-semibold tracking-wide text-white transition-colors duration-300 hover:bg-amber-800',
           isDisabled && 'cursor-not-allowed opacity-80'
         )}
         onClick={onIncrement}
@@ -111,7 +137,6 @@ function ProductSection() {
     return rawProducts.map((val) => ({
       ...val,
       image: `${IMAGE_BASE_URL}${val.image}`,
-      count: 0,
     }))
   }, [rawProducts])
 
@@ -128,8 +153,8 @@ function ProductSection() {
           </p>
         </div>
         <div className='mx-auto flex flex-row flex-wrap justify-center gap-6'>
-          {products.map((product, idx) => {
-            return <ProductCard key={idx} product={product} />
+          {products.map((product) => {
+            return <ProductCard key={product.id} product={product} />
           })}
         </div>
       </div>
