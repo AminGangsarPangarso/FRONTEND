@@ -26,7 +26,7 @@ function Login() {
   const onSubmit = async (e) => {
     e.preventDefault()
     await authServices
-      .register(form)
+      .login(form)
       .then((res) => {
         toastApiSuccess(res)
         login(res?.data)

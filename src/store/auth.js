@@ -19,9 +19,6 @@ const useAuth = create((set) => ({
     localStorage.removeItem(LOCAL_STORAGE_KEY.auth)
     set({ auth: null })
   },
-  setDataAuth: (data) => {
-    set({ auth: data })
-  },
 }))
 
 export default useAuth

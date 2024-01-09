@@ -25,7 +25,7 @@ function Navbar() {
           </div>
           <RouteLink
             to='login'
-            className='block rounded-md bg-amber-700 px-6 py-2 text-left text-white'
+            className='block rounded-md bg-amber-700 px-6 py-2 text-left font-raleway text-sm font-semibold tracking-wide text-white'
           >
             Login
           </RouteLink>
@@ -33,7 +33,7 @@ function Navbar() {
       </nav>
       <div
         className={cn(
-          'fixed right-0 top-0 z-50 flex h-full w-full -translate-y-full items-center justify-center bg-black transition-transform duration-300 md:hidden md:translate-y-0',
+          'fixed right-0 top-0 z-50 flex h-full w-full -translate-y-full flex-col items-center justify-center gap-4 bg-black transition-transform duration-300 md:hidden md:translate-y-0',
           menu.isOpen && 'translate-y-0'
         )}
       >
@@ -49,6 +49,12 @@ function Navbar() {
           itemClassName='flex w-full mx-auto justify-center'
           onClick={menu.close}
         />
+        <RouteLink
+          to='login'
+          className='block rounded-md bg-amber-700 px-6 py-2 text-left font-raleway text-sm font-semibold tracking-wide text-white'
+        >
+          Login
+        </RouteLink>
       </div>
     </>
   )
