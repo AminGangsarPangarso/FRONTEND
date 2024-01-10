@@ -6,14 +6,14 @@ import useAuth from '@/store/auth'
 import { shallow } from 'zustand/shallow'
 
 function AuthLayout() {
-  const [isAuthenticated] = useAuth((state) => [state.isAuthenticated], shallow)
+  const [auth] = useAuth((state) => [state.auth], shallow)
 
   const navigate = useNavigate()
   useEffect(() => {
-    if (isAuthenticated()) {
-      navigate('/dashboard')
+    if (auth) {
+      navigate('/history')
     }
-  }, [isAuthenticated])
+  }, [auth])
 
   return (
     <div className='min-w-screen container flex h-full min-h-screen w-full items-center justify-center py-12'>

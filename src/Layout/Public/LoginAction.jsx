@@ -1,4 +1,4 @@
-import { ShoppingCart } from 'lucide-react'
+import { History, ShoppingCart } from 'lucide-react'
 import { Link, Link as RouteLink } from 'react-router-dom'
 import useAuth from '@/store/auth'
 import { shallow } from 'zustand/shallow'
@@ -6,7 +6,7 @@ import useCart from '@/store/cart'
 import { useMemo } from 'react'
 
 function LoginAction() {
-  const [isAuthenticated] = useAuth((state) => [state.isAuthenticated], shallow)
+  const [auth, logout] = useAuth((state) => [state.auth, state.logout], shallow)
   const [cart] = useCart((state) => [state.cart], shallow)
   const count = useMemo(() => {
     const quantity = Object.values(cart).reduce(
@@ -16,7 +16,12 @@ function LoginAction() {
     return quantity > 99 ? '99+' : quantity
   }, [cart])
 
-  if (isAuthenticated()) {
+  const onLogout = (e) => {
+    e.preventDefault()
+    logout()
+  }
+
+  if (auth) {
     return (
       <div className='flex flex-col items-center justify-center gap-4 md:flex-row'>
         <Link
@@ -30,12 +35,16 @@ function LoginAction() {
           )}
           <ShoppingCart className='h-5 w-5' />
         </Link>
-        <RouteLink
-          to='dashboard'
+        <Link to='/history' className='rounded-md bg-slate-800 px-2 py-2'>
+          <History className='h-5 w-5' />
+        </Link>
+        <button
+          type='button'
           className='block rounded-md bg-amber-700 px-6 py-2 text-left font-raleway text-sm font-semibold tracking-wide text-white'
+          onClick={onLogout}
         >
-          Dashboard
-        </RouteLink>
+          Logout
+        </button>
       </div>
     )
   }

@@ -6,7 +6,7 @@ import ButtonAddToCart from '@/Components/Button/AddToCart'
 
 function ProductCard({ product }) {
   const { name, image, price } = product
-  const [isAuthenticated] = useAuth((state) => [state.isAuthenticated], shallow)
+  const [auth] = useAuth((state) => [state.auth], shallow)
 
   return (
     <div className='group h-full w-full max-w-[320px] space-y-4 rounded-md border border-slate-200 bg-white p-4 text-center'>
@@ -28,7 +28,7 @@ function ProductCard({ product }) {
           {rupiah(price)}
         </h3>
       </div>
-      <ButtonAddToCart product={product} hasLoggedIn={isAuthenticated()} />
+      <ButtonAddToCart product={product} hasLoggedIn={!!auth} />
     </div>
   )
 }

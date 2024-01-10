@@ -31,7 +31,7 @@ function Login() {
         toastApiSuccess(res)
         login(res?.data)
         const timeout = setTimeout(() => {
-          navigate('/dashboard')
+          navigate('/history')
           clearTimeout(timeout)
         }, 1500)
       })

@@ -5,14 +5,14 @@ import useAuth from '@/store/auth'
 import { shallow } from 'zustand/shallow'
 
 function DashboardLayout() {
-  const [isAuthenticated] = useAuth((state) => [state.isAuthenticated], shallow)
+  const [auth] = useAuth((state) => [state.auth], shallow)
 
   const navigate = useNavigate()
   useEffect(() => {
-    if (!isAuthenticated()) {
+    if (!auth) {
       navigate('/login')
     }
-  }, [isAuthenticated])
+  }, [auth])
 
   return (
     <PublicLayout>

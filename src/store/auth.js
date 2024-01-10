@@ -4,9 +4,6 @@ import { extractToken, isTokenExpired } from '@/utils/auth'
 
 const useAuth = create((set, get) => ({
   auth: null,
-  isAuthenticated: () => {
-    return !!get()?.auth
-  },
   login: ({ token }) => {
     localStorage.setItem(LOCAL_STORAGE_KEY.auth, token)
     get().updateAuth(token)
@@ -31,8 +28,8 @@ const useAuth = create((set, get) => ({
     return auth && !isTokenExpired(auth)
   },
   logout: () => {
-    localStorage.removeItem(LOCAL_STORAGE_KEY.auth)
     set({ auth: null })
+    localStorage.removeItem(LOCAL_STORAGE_KEY.auth)
   },
 }))
 
