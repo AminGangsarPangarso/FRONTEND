@@ -1,11 +1,5 @@
 module.exports = {
-  // root:true,
-  // extends:'@react-native-community',
-  // rules:{
-  //   "prettier/prettier": ["error", {
-  //     "endOfLine":"auto"
-  //   }],
-  // }
+  root: true,
   env: {
     browser: true,
     es2021: true,
@@ -58,6 +52,7 @@ module.exports = {
     'react/jsx-props-no-spreading': ['off'],
     'jsx-a11y/label-has-associated-control': ['off'],
     'react/react-in-jsx-scope': ['off'],
+    'no-param-reassign': ['off'],
     'prettier/prettier': ['error', {}, { usePrettierrc: true }],
     'no-duplicate-imports': 'error',
   },

@@ -11,7 +11,7 @@ const withAuthorization = () => {
   }
 }
 
-const axiosIntance = axios.create({
+const axiosInstance = axios.create({
   baseURL: API_BASE_URL,
   headers: {
     Accept: 'application/json',
@@ -19,4 +19,4 @@ const axiosIntance = axios.create({
   },
 })
 
-export default axiosIntance
+export default axiosInstance
